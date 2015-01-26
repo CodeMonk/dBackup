@@ -2,7 +2,7 @@
 Well . . maybe not a full spec, but . . .
 
 ## Phase 1 dBackup Specs
-* Leverage afio for destination file(s)
+* Leverage afio for destination file(s) - if possible.  Windows doesn't have afio, so, we may need to re-implement afio in python.
 * Support splititng backup files by size.
 * Have include and exclude lists with regular expressions.
 	* Have test modes that generate file lists based on include and exclue for testing backup sets.
@@ -18,6 +18,8 @@ Well . . maybe not a full spec, but . . .
 
 ## Phase 2 dBackup Specs
 * Handle backups from multiple machines from one front end.
+* Scheduling
+* Detailed backup / restore reporting
 
 ## kBackup Specs
 * Archive format and compression method as well as other parameters get detected automatically during restore or verify operation. You do not need to know how you created the archive, KBACKUP will find it out for you.
