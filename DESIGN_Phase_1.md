@@ -8,6 +8,7 @@ Goals
 * Get a list of files, based on regular expressions in settings.
 * Create a manifest in a portable format to store at the destination.
 * Destination is a mounted directory somewehre.
+* Store backup data in the destionation
 
 
 ### Backup Specifics
@@ -15,7 +16,7 @@ Goals
 * Backup Format: 
 	* We need at least two things here:
 		* Blob containing the backup
-		* Manifest
+		* Manifest - JSON
 	* I'm hesitatant to use ZIP, as the compression will be for the whole archive, which will make it hard to easily grab the manifest.
 	* The blob with the backup needs to be in a format that can be split across devices.  Preferably in a format where a single pieceof a split file can be restored.
 
@@ -24,10 +25,12 @@ Goals
 * Ability to restore from backup created elsewhere (from the blob)
 * Ability to restore from backup in database
 
-Django Specifics
---------------
+### Django Specifics
 
 * Need a settings configuration specifics.
+* How to create some kind of progress bar for scanning for files.
+* How to create some kind of progress bar for doing backup.
+* Need to be able to disconnect and reconnect to check on status of running backup and/or restore.  (with progress)
 
 Old Phase One Design
 ===========

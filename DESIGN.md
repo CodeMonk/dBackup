@@ -2,19 +2,7 @@
 Well . . maybe not a full spec, but . . .
 
 ## Phase 1 dBackup Specs
-* Leverage afio for destination file(s) - if possible.  Windows doesn't have afio, so, we may need to re-implement afio in python.
-* Support splititng backup files by size.
-* Have include and exclude lists with regular expressions.
-	* Have test modes that generate file lists based on include and exclue for testing backup sets.
-* Use Web GUI front end.
-	* Likely implemented with dJango
-* Backup to any destination supported on host machine:
-	* Mounted Drive / Directory
-	* CD / DVD_ROM
-* Ability to Restore w/o previous knowledge of backup.
-	* Contents of backup will contain enough information to restore into another directory.
-* Support any filename supported by Operating system.  (i.e. handle files / directories with spaces)
-* Handle IFS correctly (/ vs \\) in directory structure for both restore and backup.
+Moved to DESIGN_Phase_1.md
 
 ## Phase 2 dBackup Specs
 * Handle backups from multiple machines from one front end.
