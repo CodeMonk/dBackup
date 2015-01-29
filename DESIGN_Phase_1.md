@@ -9,6 +9,9 @@ Goals
 * Create a manifest in a portable format to store at the destination.
 * Destination is a mounted directory somewehre.
 * Store backup data in the destionation
+* Fully document all code and classes.
+	* Use Sphinx for docs.
+* All code must have unit tests
 
 
 ### Backup Specifics
