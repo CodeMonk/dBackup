@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['exclude_5fregexps',['exclude_regexps',['../classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4',1,'FileList::FileList']]]
+  ['destination',['Destination',['../classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c',1,'Backup::Backup']]],
+  ['destinationspace',['DestinationSpace',['../classBackup_1_1Backup.html#a98f0b4ebfc8686a2cba2031091dc1f21',1,'Backup::Backup']]],
+  ['directories',['directories',['../classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc',1,'FileList::FileList']]]
 ];

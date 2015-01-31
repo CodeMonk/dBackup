@@ -130,10 +130,13 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a05613c9a7c113f67c62ee337af6b37bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">directories</a></td></tr>
+<tr class="memdesc:a05613c9a7c113f67c62ee337af6b37bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of directories to search for backup files.  <a href="#a05613c9a7c113f67c62ee337af6b37bc">More...</a><br /></td></tr>
 <tr class="separator:a05613c9a7c113f67c62ee337af6b37bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eccabd53087c71dc5eb3fa6a37527e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">exclude_regexps</a></td></tr>
+<tr class="memdesc:a4eccabd53087c71dc5eb3fa6a37527e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of compiled regular expressions to exclude from the files found.  <a href="#a4eccabd53087c71dc5eb3fa6a37527e4">More...</a><br /></td></tr>
 <tr class="separator:a4eccabd53087c71dc5eb3fa6a37527e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a167dac7ce89dc539b286e41c848fb2a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a></td></tr>
+<tr class="memdesc:a167dac7ce89dc539b286e41c848fb2a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will contain a list of files found, after directories are searched, and excludes processed.  <a href="#a167dac7ce89dc539b286e41c848fb2a3">More...</a><br /></td></tr>
 <tr class="separator:a167dac7ce89dc539b286e41c848fb2a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -142,7 +145,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a6d1fb6bd1aa3278b851c7f0c3c1da509"><td class="mdescLeft">&#160;</td><td class="mdescRight">Precompile our list of regular expressions for speed later.  <a href="#a6d1fb6bd1aa3278b851c7f0c3c1da509">More...</a><br /></td></tr>
 <tr class="separator:a6d1fb6bd1aa3278b851c7f0c3c1da509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabdeca5ca9f862805a40f5dc2a6ac60f"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">__getFilesFromDirectory</a> (self, dir)</td></tr>
-<tr class="memdesc:aabdeca5ca9f862805a40f5dc2a6ac60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively return all files from the Directory.  <a href="#aabdeca5ca9f862805a40f5dc2a6ac60f">More...</a><br /></td></tr>
+<tr class="memdesc:aabdeca5ca9f862805a40f5dc2a6ac60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively search for files starting at dir, and return them in a list.  <a href="#aabdeca5ca9f862805a40f5dc2a6ac60f">More...</a><br /></td></tr>
 <tr class="separator:aabdeca5ca9f862805a40f5dc2a6ac60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a925e90c68104188c181fbeba0b0ae4"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">__matchesAny</a> (self, string, regexps)</td></tr>
 <tr class="memdesc:a6a925e90c68104188c181fbeba0b0ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return true if string matches any of the regexps.  <a href="#a6a925e90c68104188c181fbeba0b0ae4">More...</a><br /></td></tr>
@@ -234,7 +237,7 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Recursively return all files from the Directory. </p>
+<p>Recursively search for files starting at dir, and return them in a list. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">dir</td><td>Directory to search </td></tr>
@@ -243,7 +246,15 @@ Private Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a list of files found. </dd></dl>
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00055">55</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00065">65</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFileList_1_1FileList_aabdeca5ca9f862805a40f5dc2a6ac60f_icgraph.png" border="0" usemap="#classFileList_1_1FileList_aabdeca5ca9f862805a40f5dc2a6ac60f_icgraph" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -295,14 +306,13 @@ Private Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if string matches any regular expression in regexps </dd></dl>
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00070">70</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00081">81</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFileList_1_1FileList_a6a925e90c68104188c181fbeba0b0ae4_icgraph.png" border="0" usemap="#classFileList_1_1FileList_a6a925e90c68104188c181fbeba0b0ae4_icgraph" alt=""/></div>
-<map name="classFileList_1_1FileList_a6a925e90c68104188c181fbeba0b0ae4_icgraph" id="classFileList_1_1FileList_a6a925e90c68104188c181fbeba0b0ae4_icgraph">
-</map>
+<!-- MAP 1 -->
 </div>
 </p>
 
@@ -349,7 +359,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a list of compiled regular expressions </dd></dl>
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00042">42</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00050">50</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
 
 </div>
 </div>
@@ -401,14 +411,21 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>List of files that did <em>not</em> match the excludes. </dd></dl>
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00084">84</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00095">95</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classFileList_1_1FileList_a9335e24c3274c3e5c36263c3da33a1e4_cgraph.png" border="0" usemap="#classFileList_1_1FileList_a9335e24c3274c3e5c36263c3da33a1e4_cgraph" alt=""/></div>
-<map name="classFileList_1_1FileList_a9335e24c3274c3e5c36263c3da33a1e4_cgraph" id="classFileList_1_1FileList_a9335e24c3274c3e5c36263c3da33a1e4_cgraph">
-</map>
+<!-- MAP 2 -->
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFileList_1_1FileList_a9335e24c3274c3e5c36263c3da33a1e4_icgraph.png" border="0" usemap="#classFileList_1_1FileList_a9335e24c3274c3e5c36263c3da33a1e4_icgraph" alt=""/></div>
+<!-- MAP 3 -->
 </div>
 </p>
 
@@ -429,9 +446,25 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Return an array of the files found matching our parameters. </p>
-<p>Uses class variables passed into the instance: self.directories List of directories to search. self.exclude_regexps List of regular expressions to exclude. </p>
+<p>Uses class variables passed into the instance: </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">self.directories</td><td>List of directories to search. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">self.exclude_regexps</td><td>List of regular expressions to exclude. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">self.files</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>self.files List of files found. </dd></dl>
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00103">103</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00117">117</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFileList_1_1FileList_a229769765bc69c318ba73c00ee7910ef_cgraph.png" border="0" usemap="#classFileList_1_1FileList_a229769765bc69c318ba73c00ee7910ef_cgraph" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+</p>
 
 </div>
 </div>
@@ -446,7 +479,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00033">33</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>List of directories to search for backup files. </p>
+
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00034">34</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
 
 </div>
 </div>
@@ -460,7 +495,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00034">34</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>List of compiled regular expressions to exclude from the files found. </p>
+
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00038">38</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
 
 </div>
 </div>
@@ -474,12 +511,14 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="FileList_8py_source.html#l00104">104</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
+<p>Will contain a list of files found, after directories are searched, and excludes processed. </p>
+
+<p>Definition at line <a class="el" href="FileList_8py_source.html#l00042">42</a> of file <a class="el" href="FileList_8py_source.html">FileList.py</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/FileList/<a class="el" href="FileList_8py_source.html">FileList.py</a></li>
+<li>src/lib/<a class="el" href="FileList_8py_source.html">FileList.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -487,7 +526,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespaceFileList.html">FileList</a></li><li class="navelem"><a class="el" href="classFileList_1_1FileList.html">FileList</a></li>
-    <li class="footer">Generated on Sat Jan 31 2015 01:01:56 for dBackup by
+    <li class="footer">Generated on Sat Jan 31 2015 10:47:58 for dBackup by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

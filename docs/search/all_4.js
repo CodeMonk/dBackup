@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getfiles',['getFiles',['../classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef',1,'FileList::FileList']]]
+  ['exclude_5fregexps',['exclude_regexps',['../classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4',1,'FileList::FileList']]]
 ];

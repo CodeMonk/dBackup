@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "_defgt",
-  1: "ft",
-  2: "dft",
-  3: "ft",
-  4: "_gt",
-  5: "def"
+  0: "_bcdefgt",
+  1: "bft",
+  2: "bdft",
+  3: "bft",
+  4: "_bgt",
+  5: "cdef"
 };
 
 var indexSectionNames =

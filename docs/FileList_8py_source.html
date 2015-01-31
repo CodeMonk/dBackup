@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>dBackup: src/FileList/FileList.py Source File</title>
+<title>dBackup: src/lib/FileList.py Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -138,100 +138,114 @@ $(document).ready(function(){initNavTree('FileList_8py_source.html','');});
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">#       @param[in] exclude_regexps A list of regexps to exclude from search</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">#       </span></div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a6f60213508514635e53efd7654855bfd">   32</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a6f60213508514635e53efd7654855bfd">__init__</a>(self, directories=[], exclude_regexps=[]):</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">   33</a></span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">directories</a> = directories</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">   34</a></span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">exclude_regexps</a> = self.<a class="code" href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">__preCompile</a>(exclude_regexps)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">## List of directories to search for backup files.</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">   34</a></span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">directories</a> = directories</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">#  </span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="comment">#       Precompile our list of regular expressions for speed later</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">#       @param[in] regexps  - our list of regular expressions</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">#       @returns a list of compiled regular expressions</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">   42</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">__preCompile</a>(self, regexps):</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        result = []</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">for</span> regexp <span class="keywordflow">in</span> regexps:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            result.append(re.compile(regexp))</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> result</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">#       Recursively return all files from the Directory</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">#       @param[in] dir Directory to search</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">#       @returns a list of files found.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">   55</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">__getFilesFromDirectory</a>(self, dir):</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        files=[]</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">for</span> root, dirnames, filenames <span class="keywordflow">in</span> os.walk(dir):</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">for</span> filename <span class="keywordflow">in</span> filenames:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                files.append(os.path.join(root,filename))</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">return</span> files</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">#       Return true if string matches any of the regexps</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">#       @param[in] string String to check</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">#       @param[in] regexps List of Regular expressions to check</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">#       @returns True if string matches any regular expression in regexps</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">   70</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">__matchesAny</a>(self, string, regexps):</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">for</span> reg <span class="keywordflow">in</span> regexps:</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keywordflow">if</span> reg.search(string):</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">#       Remove any files from list that match excludes, and return the</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">#       scrubbed array.</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">#       @param[in] files     List of files to check</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">#       @param[in] excludes  List of expressions to check files against</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">#       @returns List of files that did *not* match the excludes.</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">   84</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">__scrubFiles</a>(self, files, excludes):</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        result=[]</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">for</span> file <span class="keywordflow">in</span> files:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.<a class="code" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">__matchesAny</a>(file, excludes):</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                result.append(file)</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> result</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">#  </span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">#       Return an array of the files found matching our parameters </span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">#       Uses class variables passed into the instance:</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">#       self.directories      List of directories to search.</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">#       self.exclude_regexps  List of regular expressions to exclude.</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef">  103</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef">getFiles</a>(self):</div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">  104</a></span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a>=[]</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> self.<a class="code" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">directories</a>:</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            dir_files = self.<a class="code" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">__getFilesFromDirectory</a>(dir)</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a> += self.<a class="code" href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">__scrubFiles</a>(dir_files, self.<a class="code" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">exclude_regexps</a>)</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a4eccabd53087c71dc5eb3fa6a37527e4"><div class="ttname"><a href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">FileList.FileList.exclude_regexps</a></div><div class="ttdeci">exclude_regexps</div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00034">FileList.py:34</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a05613c9a7c113f67c62ee337af6b37bc"><div class="ttname"><a href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">FileList.FileList.directories</a></div><div class="ttdeci">directories</div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00033">FileList.py:33</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a9335e24c3274c3e5c36263c3da33a1e4"><div class="ttname"><a href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">FileList.FileList.__scrubFiles</a></div><div class="ttdeci">def __scrubFiles(self, files, excludes)</div><div class="ttdoc">Remove any files from list that match excludes, and return the scrubbed array. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00084">FileList.py:84</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a167dac7ce89dc539b286e41c848fb2a3"><div class="ttname"><a href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">FileList.FileList.files</a></div><div class="ttdeci">files</div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00104">FileList.py:104</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a229769765bc69c318ba73c00ee7910ef"><div class="ttname"><a href="classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef">FileList.FileList.getFiles</a></div><div class="ttdeci">def getFiles(self)</div><div class="ttdoc">Return an array of the files found matching our parameters. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00103">FileList.py:103</a></div></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="comment">## List of compiled regular expressions to exclude </span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="comment">#  from the files found</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">   38</a></span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">exclude_regexps</a> = self.<a class="code" href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">__preCompile</a>(exclude_regexps)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">## Will contain a list of files found, after directories are </span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">#  searched, and excludes processed.</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">   42</a></span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a> = <span class="keywordtype">None</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">##</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">#  </span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">#       Precompile our list of regular expressions for speed later</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">#       @param[in] regexps  - our list of regular expressions</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">#       @returns a list of compiled regular expressions</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">   50</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">__preCompile</a>(self, regexps):</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">## List that we will be returning, after compilation</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        result = []</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">for</span> regexp <span class="keywordflow">in</span> regexps:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            result.append(re.compile(regexp))</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> result</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">##</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment"># </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">#       Recursively search for files starting at dir,</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">#       and return them in a list.</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">#       @param[in] dir Directory to search</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">#       @returns a list of files found.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">   65</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">__getFilesFromDirectory</a>(self, dir):</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">## List of files we found from the directory</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        files=[]</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">for</span> root, dirnames, filenames <span class="keywordflow">in</span> os.walk(dir):</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keywordflow">for</span> filename <span class="keywordflow">in</span> filenames:</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                files.append(os.path.join(root,filename))</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> files</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">##</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="comment"># </span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="comment">#       Return true if string matches any of the regexps</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment"># </span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">#       @param[in] string String to check</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">#       @param[in] regexps List of Regular expressions to check</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">#       @returns True if string matches any regular expression in regexps</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">   81</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">__matchesAny</a>(self, string, regexps):</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">for</span> reg <span class="keywordflow">in</span> regexps:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">if</span> reg.search(string):</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">##</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment"># </span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="comment">#       Remove any files from list that match excludes, and return the</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">#       scrubbed array.</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">#       @param[in] files     List of files to check</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="comment">#       @param[in] excludes  List of expressions to check files against</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">#       @returns List of files that did *not* match the excludes.</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">   95</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">__scrubFiles</a>(self, files, excludes):</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">## List of files minus the excludes.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        result=[]</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">for</span> file <span class="keywordflow">in</span> files:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.<a class="code" href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">__matchesAny</a>(file, excludes):</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                result.append(file)</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">return</span> result</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">##</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="comment">#  </span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="comment">#       Return an array of the files found matching our parameters </span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment"># </span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="comment">#       Uses class variables passed into the instance:</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">#       @param[in] self.directories      List of directories to search.</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">#       @param[in] self.exclude_regexps  List of regular expressions to exclude.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">#       @param[out] self.files</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">#       @returns self.files List of files found.</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">#       </span></div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef">  117</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef">getFiles</a>(self):</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a>=[]</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordflow">for</span> dir <span class="keywordflow">in</span> self.<a class="code" href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">directories</a>:</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            dir_files = self.<a class="code" href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">__getFilesFromDirectory</a>(dir)</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;            self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a> += self.<a class="code" href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">__scrubFiles</a>(dir_files, self.<a class="code" href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">exclude_regexps</a>)</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">files</a></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a4eccabd53087c71dc5eb3fa6a37527e4"><div class="ttname"><a href="classFileList_1_1FileList.html#a4eccabd53087c71dc5eb3fa6a37527e4">FileList.FileList.exclude_regexps</a></div><div class="ttdeci">exclude_regexps</div><div class="ttdoc">List of compiled regular expressions to exclude from the files found. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00038">FileList.py:38</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a05613c9a7c113f67c62ee337af6b37bc"><div class="ttname"><a href="classFileList_1_1FileList.html#a05613c9a7c113f67c62ee337af6b37bc">FileList.FileList.directories</a></div><div class="ttdeci">directories</div><div class="ttdoc">List of directories to search for backup files. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00034">FileList.py:34</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a9335e24c3274c3e5c36263c3da33a1e4"><div class="ttname"><a href="classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4">FileList.FileList.__scrubFiles</a></div><div class="ttdeci">def __scrubFiles(self, files, excludes)</div><div class="ttdoc">Remove any files from list that match excludes, and return the scrubbed array. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00095">FileList.py:95</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a167dac7ce89dc539b286e41c848fb2a3"><div class="ttname"><a href="classFileList_1_1FileList.html#a167dac7ce89dc539b286e41c848fb2a3">FileList.FileList.files</a></div><div class="ttdeci">files</div><div class="ttdoc">Will contain a list of files found, after directories are searched, and excludes processed. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00042">FileList.py:42</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a229769765bc69c318ba73c00ee7910ef"><div class="ttname"><a href="classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef">FileList.FileList.getFiles</a></div><div class="ttdeci">def getFiles(self)</div><div class="ttdoc">Return an array of the files found matching our parameters. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00117">FileList.py:117</a></div></div>
 <div class="ttc" id="classFileList_1_1FileList_html"><div class="ttname"><a href="classFileList_1_1FileList.html">FileList.FileList</a></div><div class="ttdoc">Creates a list of files from a list of directories and a list of regular expressions. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00024">FileList.py:24</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a6a925e90c68104188c181fbeba0b0ae4"><div class="ttname"><a href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">FileList.FileList.__matchesAny</a></div><div class="ttdeci">def __matchesAny(self, string, regexps)</div><div class="ttdoc">Return true if string matches any of the regexps. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00070">FileList.py:70</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_aabdeca5ca9f862805a40f5dc2a6ac60f"><div class="ttname"><a href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">FileList.FileList.__getFilesFromDirectory</a></div><div class="ttdeci">def __getFilesFromDirectory(self, dir)</div><div class="ttdoc">Recursively return all files from the Directory. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00055">FileList.py:55</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html_a6d1fb6bd1aa3278b851c7f0c3c1da509"><div class="ttname"><a href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">FileList.FileList.__preCompile</a></div><div class="ttdeci">def __preCompile(self, regexps)</div><div class="ttdoc">Precompile our list of regular expressions for speed later. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00042">FileList.py:42</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a6a925e90c68104188c181fbeba0b0ae4"><div class="ttname"><a href="classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4">FileList.FileList.__matchesAny</a></div><div class="ttdeci">def __matchesAny(self, string, regexps)</div><div class="ttdoc">Return true if string matches any of the regexps. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00081">FileList.py:81</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_aabdeca5ca9f862805a40f5dc2a6ac60f"><div class="ttname"><a href="classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f">FileList.FileList.__getFilesFromDirectory</a></div><div class="ttdeci">def __getFilesFromDirectory(self, dir)</div><div class="ttdoc">Recursively search for files starting at dir, and return them in a list. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00065">FileList.py:65</a></div></div>
+<div class="ttc" id="classFileList_1_1FileList_html_a6d1fb6bd1aa3278b851c7f0c3c1da509"><div class="ttname"><a href="classFileList_1_1FileList.html#a6d1fb6bd1aa3278b851c7f0c3c1da509">FileList.FileList.__preCompile</a></div><div class="ttdeci">def __preCompile(self, regexps)</div><div class="ttdoc">Precompile our list of regular expressions for speed later. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00050">FileList.py:50</a></div></div>
 <div class="ttc" id="classFileList_1_1FileList_html_a6f60213508514635e53efd7654855bfd"><div class="ttname"><a href="classFileList_1_1FileList.html#a6f60213508514635e53efd7654855bfd">FileList.FileList.__init__</a></div><div class="ttdeci">def __init__</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00032">FileList.py:32</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_d7c1a41e6ede079177d4adf392ad6b40.html">FileList</a></li><li class="navelem"><a class="el" href="FileList_8py.html">FileList.py</a></li>
-    <li class="footer">Generated on Sat Jan 31 2015 01:01:56 for dBackup by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="FileList_8py.html">FileList.py</a></li>
+    <li class="footer">Generated on Sat Jan 31 2015 10:47:57 for dBackup by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
