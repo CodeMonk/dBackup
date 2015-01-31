@@ -1,7 +1,0 @@
-digraph "Graphical Class Hierarchy"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  rankdir="LR";
-  Node1 [label="FileList.FileList",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classFileList_1_1FileList.html",tooltip="Creates a list of files from a list of directories and a list of regular expressions. "];
-}

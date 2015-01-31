@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>dBackup: src/lib/Backup.py Source File</title>
+<title>dBackup: src/dbackup/Backup.py Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -47,7 +47,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -106,125 +105,13 @@ $(document).ready(function(){initNavTree('Backup_8py_source.html','');});
 <div class="title">Backup.py</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Backup_8py.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno"><a class="line" href="namespaceBackup.html">    1</a></span>&#160;<span class="comment">##</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"># @package docstring</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"># Our main Backup Class</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"># This module will do most backup related tasks.</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">import</span> os, platform</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> ctypes</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">from</span> FileList <span class="keyword">import</span> FileList</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">##</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">#   Will read it&#39;s configuration from *somewhere*.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">#   Will create a FileList based on entries in the configuration.</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"># </span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">#   Has routines to create a backup at the destination (from the</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">#       configuration)</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">#   </span></div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html">   24</a></span>&#160;<span class="keyword">class </span><a class="code" href="classBackup_1_1Backup.html">Backup</a>():</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">#  </span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">#       Constructor </span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">#       @param[in] config     Will be *something*.  For now, just a dict.</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a2ea72893281f514b429c8ffe4025d4c9">   31</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classBackup_1_1Backup.html#a2ea72893281f514b429c8ffe4025d4c9">__init__</a>(self, config={}):</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">## Store our config (or load it?)</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a82b8a1e1c12300ed621bcba368bfed68">   33</a></span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a82b8a1e1c12300ed621bcba368bfed68">config</a> = config</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="comment">## Our file list, created from the configuration</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a5920b0d08d7c6db03eb2ede4249bddbe">   36</a></span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a5920b0d08d7c6db03eb2ede4249bddbe">FileList</a> = <a class="code" href="classFileList_1_1FileList.html">FileList</a>( directories = self.<a class="code" href="classBackup_1_1Backup.html#a82b8a1e1c12300ed621bcba368bfed68">config</a>[<span class="stringliteral">&#39;directories&#39;</span>],</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            exclude_regexps = self.<a class="code" href="classBackup_1_1Backup.html#a82b8a1e1c12300ed621bcba368bfed68">config</a>[<span class="stringliteral">&#39;exclude_regexps&#39;</span>]);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">## This will be a class soon, so it can handle removeable media.</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment"># For now, it&#39;s just a directory.</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">   41</a></span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">Destination</a> = self.<a class="code" href="classBackup_1_1Backup.html#a82b8a1e1c12300ed621bcba368bfed68">config</a>[<span class="stringliteral">&#39;destination&#39;</span>]</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">## Copy of our files to backup</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a2ab7f469dd011be8c6569f2ae2803b76">   44</a></span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a2ab7f469dd011be8c6569f2ae2803b76">FilesToBackup</a> = <span class="keywordtype">None</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">#  </span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">#       Scan our file list and grab a reference to the source files,</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">#       so that they could be displayed later.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">#       @param[in] self.FileList - Our file list.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">#       @param[out] self.FilestoBackup - for review, and passing to manifest</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#abeb52e7d27d3af34bade304486673b71">   54</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classBackup_1_1Backup.html#abeb52e7d27d3af34bade304486673b71">__scanSources</a>(self):</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a2ab7f469dd011be8c6569f2ae2803b76">FilesToBackup</a> = self.FileList.getFiles()</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">#       Check that destination is writeable by createing and then deleting</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">#       a file.  Failures WILL throw exceptions.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">#       Check free space on destination, and store it.</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment"># </span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">#       @returns self.DestinationSpace</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="comment">#       </span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a2cce2728f744ca6492b5a1590b653756">   67</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classBackup_1_1Backup.html#a2cce2728f744ca6492b5a1590b653756">__checkDestination</a>(self):</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment"># Create a quick file on the destination drive, the delete it</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="comment">## TempFile to use</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        tmpFile = os.path.join(self.<a class="code" href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">Destination</a>, <span class="stringliteral">&quot;django.tmp&quot;</span>)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        open(tmpFile,<span class="stringliteral">&quot;w&quot;</span>).write(<span class="stringliteral">&quot;testing write&quot;</span>)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        os.remove(tmpFile)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment"># And, check our space</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a98f0b4ebfc8686a2cba2031091dc1f21">   76</a></span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a98f0b4ebfc8686a2cba2031091dc1f21">DestinationSpace</a> = self.<a class="code" href="classBackup_1_1Backup.html#a73e6218f1cf79c2dd4906a9ea6a622cf">__getFreeSpaceMb</a>()</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">print</span> <span class="stringliteral">&quot;DEBUG: {} has {}Mb free&quot;</span>.format(self.<a class="code" href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">Destination</a>,</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            self.<a class="code" href="classBackup_1_1Backup.html#a98f0b4ebfc8686a2cba2031091dc1f21">DestinationSpace</a>)</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">##</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">#  Return folder free space in Mb </span></div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a73e6218f1cf79c2dd4906a9ea6a622cf">   83</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classBackup_1_1Backup.html#a73e6218f1cf79c2dd4906a9ea6a622cf">__getFreeSpaceMb</a>(self):</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">if</span> platform.system() == <span class="stringliteral">&quot;Windows&quot;</span>:</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="comment">#yeuch</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            free_bytes = ctypes.c_ulonglong(0)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            ctypes.windll.kernel32.GetDiskFreeSpaceExW(</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                ctypes.c_wchar_p(self.<a class="code" href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">Destination</a>), <span class="keywordtype">None</span>,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordtype">None</span>, ctypes.pointer(free_bytes))</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordflow">return</span> free_bytes.value /1024/1024</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            st = os.statvfs(self.<a class="code" href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">Destination</a>)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">return</span> st.f_bavail * st.f_frsize/1024/1024</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classBackup_1_1Backup.html#a248556869ee8e465e37baaae1b8037f8">   96</a></span>&#160;    <span class="keyword">def </span><a class="code" href="classBackup_1_1Backup.html#a248556869ee8e465e37baaae1b8037f8">Backup</a>(self):</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">## Do simple backup -- probably just for testing.</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#a2cce2728f744ca6492b5a1590b653756">__checkDestination</a>()</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        self.<a class="code" href="classBackup_1_1Backup.html#abeb52e7d27d3af34bade304486673b71">__scanSources</a>()</div>
-<div class="ttc" id="classBackup_1_1Backup_html_a248556869ee8e465e37baaae1b8037f8"><div class="ttname"><a href="classBackup_1_1Backup.html#a248556869ee8e465e37baaae1b8037f8">Backup.Backup.Backup</a></div><div class="ttdeci">def Backup(self)</div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00096">Backup.py:96</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a98f0b4ebfc8686a2cba2031091dc1f21"><div class="ttname"><a href="classBackup_1_1Backup.html#a98f0b4ebfc8686a2cba2031091dc1f21">Backup.Backup.DestinationSpace</a></div><div class="ttdeci">DestinationSpace</div><div class="ttdoc">TempFile to use. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00076">Backup.py:76</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_abeb52e7d27d3af34bade304486673b71"><div class="ttname"><a href="classBackup_1_1Backup.html#abeb52e7d27d3af34bade304486673b71">Backup.Backup.__scanSources</a></div><div class="ttdeci">def __scanSources(self)</div><div class="ttdoc">Scan our file list and grab a reference to the source files, so that they could be displayed later...</div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00054">Backup.py:54</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html"><div class="ttname"><a href="classBackup_1_1Backup.html">Backup.Backup</a></div><div class="ttdoc">Will read it&#39;s configuration from somewhere. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00024">Backup.py:24</a></div></div>
-<div class="ttc" id="classFileList_1_1FileList_html"><div class="ttname"><a href="classFileList_1_1FileList.html">FileList.FileList</a></div><div class="ttdoc">Creates a list of files from a list of directories and a list of regular expressions. </div><div class="ttdef"><b>Definition:</b> <a href="FileList_8py_source.html#l00024">FileList.py:24</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a2ea72893281f514b429c8ffe4025d4c9"><div class="ttname"><a href="classBackup_1_1Backup.html#a2ea72893281f514b429c8ffe4025d4c9">Backup.Backup.__init__</a></div><div class="ttdeci">def __init__</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00031">Backup.py:31</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a2ab7f469dd011be8c6569f2ae2803b76"><div class="ttname"><a href="classBackup_1_1Backup.html#a2ab7f469dd011be8c6569f2ae2803b76">Backup.Backup.FilesToBackup</a></div><div class="ttdeci">FilesToBackup</div><div class="ttdoc">Copy of our files to backup. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00044">Backup.py:44</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a82b8a1e1c12300ed621bcba368bfed68"><div class="ttname"><a href="classBackup_1_1Backup.html#a82b8a1e1c12300ed621bcba368bfed68">Backup.Backup.config</a></div><div class="ttdeci">config</div><div class="ttdoc">Store our config (or load it?) </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00033">Backup.py:33</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a5920b0d08d7c6db03eb2ede4249bddbe"><div class="ttname"><a href="classBackup_1_1Backup.html#a5920b0d08d7c6db03eb2ede4249bddbe">Backup.Backup.FileList</a></div><div class="ttdeci">FileList</div><div class="ttdoc">Our file list, created from the configuration. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00036">Backup.py:36</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a2cce2728f744ca6492b5a1590b653756"><div class="ttname"><a href="classBackup_1_1Backup.html#a2cce2728f744ca6492b5a1590b653756">Backup.Backup.__checkDestination</a></div><div class="ttdeci">def __checkDestination(self)</div><div class="ttdoc">Check that destination is writeable by createing and then deleting a file. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00067">Backup.py:67</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a73e6218f1cf79c2dd4906a9ea6a622cf"><div class="ttname"><a href="classBackup_1_1Backup.html#a73e6218f1cf79c2dd4906a9ea6a622cf">Backup.Backup.__getFreeSpaceMb</a></div><div class="ttdeci">def __getFreeSpaceMb(self)</div><div class="ttdoc">Return folder free space in Mb. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00083">Backup.py:83</a></div></div>
-<div class="ttc" id="classBackup_1_1Backup_html_a550a434e3229ab9f7b7d7fe2bbeb9a4c"><div class="ttname"><a href="classBackup_1_1Backup.html#a550a434e3229ab9f7b7d7fe2bbeb9a4c">Backup.Backup.Destination</a></div><div class="ttdeci">Destination</div><div class="ttdoc">This will be a class soon, so it can handle removeable media. </div><div class="ttdef"><b>Definition:</b> <a href="Backup_8py_source.html#l00041">Backup.py:41</a></div></div>
-</div><!-- fragment --></div><!-- contents -->
+<a href="Backup_8py.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c85d3e3c5052e9ad9ce18c6863244a25.html">lib</a></li><li class="navelem"><a class="el" href="Backup_8py.html">Backup.py</a></li>
-    <li class="footer">Generated on Sat Jan 31 2015 10:47:56 for dBackup by
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_149e09a17f83c007fad81ab5006f7c22.html">dbackup</a></li><li class="navelem"><a class="el" href="Backup_8py.html">Backup.py</a></li>
+    <li class="footer">Generated on Sat Jan 31 2015 14:15:54 for dBackup by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
