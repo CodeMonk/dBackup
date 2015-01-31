@@ -13,16 +13,29 @@ import re
 
 class FileList():
 	"""
-	Produce a list of files, from specified roots and include / exclude lists
+	Creates a list of files from a list of directories and a list of
+	regular expressions.  The expressions are sets of files to exclude
+	from the ones found searching the directories.
+
+	Right now, after construction, the main external function is 
+	getFiles, which returns an array of the files found.
 	"""
 
 	def __init__(self, directories=[], exclude_regexps=[]):
-		""" Constructor """
+		""" 
+		Constructor 
+		@param[in] directories     A list of directories to search
+		@param[in] exclude_regexps A list of regexps to exclude from search
+		"""
 		self.directories = directories
 		self.exclude_regexps = self.__preCompile(exclude_regexps)
 
 	def __preCompile(self, regexps):
-		""" Precompile our list of regular expressions for speed later"""
+		""" 
+		Precompile our list of regular expressions for speed later
+		@param[in] regexps  - our list of regular expressions
+		@returns a list of compiled regular expressions
+		"""
 		result = []
 		for regexp in regexps:
 			result.append(re.compile(regexp))
