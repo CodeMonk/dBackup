@@ -1,0 +1,4 @@
+<map id="Backup.Backup.Backup" name="Backup.Backup.Backup">
+<area shape="rect" id="node2" href="$classBackup_1_1Backup.html#a2cce2728f744ca6492b5a1590b653756" title="Check that destination is writeable by createing and then deleting a file. " alt="" coords="216,5,450,30"/>
+<area shape="rect" id="node3" href="$classBackup_1_1Backup.html#abeb52e7d27d3af34bade304486673b71" title="Scan our file list and grab a reference to the source files, so that they could be displayed later..." alt="" coords="229,54,438,79"/>
+</map>

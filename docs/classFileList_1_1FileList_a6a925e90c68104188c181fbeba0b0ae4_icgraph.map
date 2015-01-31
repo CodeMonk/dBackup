@@ -1,0 +1,4 @@
+<map id="FileList.FileList.__matchesAny" name="FileList.FileList.__matchesAny">
+<area shape="rect" id="node2" href="$classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4" title="Remove any files from list that match excludes, and return the scrubbed array. " alt="" coords="169,5,282,43"/>
+<area shape="rect" id="node3" href="$classFileList_1_1FileList.html#a229769765bc69c318ba73c00ee7910ef" title="Return an array of the files found matching our parameters. " alt="" coords="331,11,491,37"/>
+</map>

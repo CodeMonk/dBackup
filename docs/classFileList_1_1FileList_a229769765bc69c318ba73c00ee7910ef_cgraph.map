@@ -1,0 +1,5 @@
+<map id="FileList.FileList.getFiles" name="FileList.FileList.getFiles">
+<area shape="rect" id="node2" href="$classFileList_1_1FileList.html#aabdeca5ca9f862805a40f5dc2a6ac60f" title="Recursively search for files starting at dir, and return them in a list. " alt="" coords="214,5,381,43"/>
+<area shape="rect" id="node3" href="$classFileList_1_1FileList.html#a9335e24c3274c3e5c36263c3da33a1e4" title="Remove any files from list that match excludes, and return the scrubbed array. " alt="" coords="241,67,354,106"/>
+<area shape="rect" id="node4" href="$classFileList_1_1FileList.html#a6a925e90c68104188c181fbeba0b0ae4" title="Return true if string matches any of the regexps. " alt="" coords="430,67,543,106"/>
+</map>
