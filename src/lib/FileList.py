@@ -27,8 +27,16 @@ class FileList():
 		@param[in] directories     A list of directories to search
 		@param[in] exclude_regexps A list of regexps to exclude from search
 		"""
+		## List of directories to search for backup files.
 		self.directories = directories
+
+		## List of compiled regular expressions to exclude 
+		#  from the files found
 		self.exclude_regexps = self.__preCompile(exclude_regexps)
+		
+		## Will contain a list of files found, after directories are 
+		#  searched, and excludes processed.
+		self.files = None
 
 	def __preCompile(self, regexps):
 		""" 
@@ -36,6 +44,7 @@ class FileList():
 		@param[in] regexps  - our list of regular expressions
 		@returns a list of compiled regular expressions
 		"""
+		## List that we will be returning, after compilation
 		result = []
 		for regexp in regexps:
 			result.append(re.compile(regexp))
@@ -44,10 +53,12 @@ class FileList():
 
 	def __getFilesFromDirectory(self, dir):
 		"""
-		Recursively return all files from the Directory
+		Recursively search for files starting at dir,
+		and return them in a list.
 		@param[in] dir Directory to search
 		@returns a list of files found.
 		"""
+		## List of files we found from the directory
 		files=[]
 		for root, dirnames, filenames in os.walk(dir):
 			for filename in filenames:
@@ -76,6 +87,7 @@ class FileList():
 		@returns List of files that did *not* match the excludes.
 		"""
 
+		## List of files minus the excludes.
 		result=[]
 
 		for file in files:
@@ -90,8 +102,10 @@ class FileList():
 		Return an array of the files found matching our parameters 
 
 		Uses class variables passed into the instance:
-		self.directories      List of directories to search.
-		self.exclude_regexps  List of regular expressions to exclude.
+		@param[in] self.directories      List of directories to search.
+		@param[in] self.exclude_regexps  List of regular expressions to exclude.
+		@param[out] self.files
+		@returns self.files List of files found.
 		"""
 		self.files=[]
 		for dir in self.directories:

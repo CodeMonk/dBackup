@@ -47,8 +47,8 @@ class TestFileList(unittest.TestCase):
 		allFiles=allFL.getFiles()
 		noPycFiles=noPycFL.getFiles()
 
-		# We should have two non .pyc files
-		self.assertEqual(len(noPycFiles), 2)
+		# We should have four non .pyc files
+		self.assertEqual(len(noPycFiles), 4)
 		# We could have some pyc files
 		self.assertTrue(len(noPycFiles) <= len(allFiles))
 
