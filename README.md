@@ -2,8 +2,9 @@
 Successor to kBackup, re-written in dJango
 
 ## Useful Links
-* Project Page (just the construction template): http://codemonk.github.io/dBackup
+* Project Page: http://github.com/CodeMonk/dBackup
 * Doxygen Docs: http://codemonk.github.io/dBackup/docs
+* Wiki (with Design Spec): http://github.com/CodeMonk/dBackup/wiki
 
 ## Installing Django Under Windows
 * Install Python (we'll test with 2.7 and 3.latest) from here: http://python.org/download/
