@@ -1,6 +1,10 @@
 # dBackup
 Successor to kBackup, re-written in dJango
 
+## Useful Links
+* Project Page (just the construction template): http://codemonk.github.io/dBackup
+* Doxygen Docs: http://codemonk.github.io/dBackup/docs
+
 ## Installing Django Under Windows
 * Install Python (we'll test with 2.7 and 3.latest) from here: http://python.org/download/
 * Install setuptools: http://pypi.python.org/pypi/setuptools
