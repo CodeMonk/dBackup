@@ -12,14 +12,18 @@ from FileList import FileList
 class TestFileList(unittest.TestCase):
 
 	def test_DirectoriesEmpty(self):
-		""" Make sure directories are empty on empty constructor"""
+		""" 
+		UnitTest: Make sure directories are empty on empty constructor
+		"""
 
 		# Check Empty
 		fl=FileList()
 		self.assertTrue(len(fl.directories) == 0)
 
 	def test_DirectoriesMatch(self):
-		""" Make sure directories passed into constructor are set """
+		""" 
+		Unittest: Make sure directories passed into constructor are set 
+		"""
 		# Check that it matches
 		directories = ['a', 'b', 'c']
 
@@ -28,8 +32,10 @@ class TestFileList(unittest.TestCase):
 
 	def test_fileSearch(self):
 		"""
-		Do some searches on the local directory -- this will fail if
+		Unittest: Do some searches on the local directory -- this will fail if
 		files are added or deleted.
+
+		This test does several tests on a file list generated from this directory.
 		"""
 
 		# Find python files (2) (minus pyc)

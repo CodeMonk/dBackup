@@ -45,6 +45,8 @@ class FileList():
 	def __getFilesFromDirectory(self, dir):
 		"""
 		Recursively return all files from the Directory
+		@param[in] dir Directory to search
+		@returns a list of files found.
 		"""
 		files=[]
 		for root, dirnames, filenames in os.walk(dir):
@@ -55,6 +57,10 @@ class FileList():
 	def __matchesAny(self, string, regexps):
 		"""
 		Return true if string matches any of the regexps
+
+		@param[in] string String to check
+		@param[in] regexps List of Regular expressions to check
+		@returns True if string matches any regular expression in regexps
 		"""
 		for reg in regexps:
 			if reg.search(string):
@@ -65,6 +71,9 @@ class FileList():
 		"""
 		Remove any files from list that match excludes, and return the
 		scrubbed array.
+		@param[in] files     List of files to check
+		@param[in] excludes  List of expressions to check files against
+		@returns List of files that did *not* match the excludes.
 		"""
 
 		result=[]
@@ -77,7 +86,13 @@ class FileList():
 
 
 	def getFiles(self):
-		""" Return an array of the files found matching our parameters """
+		""" 
+		Return an array of the files found matching our parameters 
+
+		Uses class variables passed into the instance:
+		self.directories      List of directories to search.
+		self.exclude_regexps  List of regular expressions to exclude.
+		"""
 		self.files=[]
 		for dir in self.directories:
 			dir_files = self.__getFilesFromDirectory(dir)
