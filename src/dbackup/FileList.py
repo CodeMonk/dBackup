@@ -10,6 +10,66 @@ directories, and will produce a list of files.
 import os
 import re
 
+class FileInfo():
+	"""
+	Holds an itterable list of files.
+
+	The list will not only contain the filename (full path), but will also hold
+	a stat structure so we can compute the relative size of a backup of this list.
+	"""
+
+	def __init__(self):
+		""" Constructor
+
+		Set up our initial stuff.
+		"""
+
+		## Our list of files
+		self.Files=[]
+
+		## total size of all files we're holding information on
+		self.TotalSize = 0
+
+	def __str__(self):
+		""" Display our list information
+		"""
+		return "FileInfo:  {} files ({} total bytes".format(len(self.Files),
+			self.TotalSize)
+
+	def __repr__(self):
+		return self.__str__()
+
+	def getFile(self, filename):
+		for file in self.Files:
+			if file['filename'] == filename:
+				return file
+		return None
+
+	def getTotalSize(self):
+		return self.TotalSize
+
+	def getFilesArray(self):
+		result = []
+		for file in self.Files:
+			result.append(file['filename'])
+
+		return result
+
+	def addFile(self, filename):
+		""" add a file to our list
+
+		Will also add the filestruct
+		"""
+
+		stat=os.stat(filename)
+
+		## break out the size so we can play with it more easily.
+		self.TotalSize += stat.st_size
+
+		self.Files.append({'filename':filename,
+			'stat':stat, 'size':stat.st_size})
+
+
 
 class FileList():
 	"""
@@ -36,7 +96,7 @@ class FileList():
 		
 		## Will contain a list of files found, after directories are 
 		#  searched, and excludes processed.
-		self.files = None
+		self.FileInfo = FileInfo
 
 	def __preCompile(self, regexps):
 		""" 
@@ -78,24 +138,20 @@ class FileList():
 				return True
 		return False
 
-	def __scrubFiles(self, files, excludes):
+	def __scrubFilesIntoFileInfo(self, files, excludes):
 		"""
 		Remove any files from list that match excludes, and return the
 		scrubbed array.
 		@param[in] files     List of files to check
 		@param[in] excludes  List of expressions to check files against
-		@returns List of files that did *not* match the excludes.
+		@returns Adds good files to self.FileInfo
 		"""
 
 		## List of files minus the excludes.
-		result=[]
-
 		for file in files:
 			if not self.__matchesAny(file, excludes):
-				result.append(file)
-
-		return result
-
+				# Store our file structure
+				self.FileInfo.addFile(file)
 
 	def getFiles(self):
 		""" 
@@ -107,9 +163,9 @@ class FileList():
 		@param[out] self.files
 		@returns self.files List of files found.
 		"""
-		self.files=[]
+		self.FileInfo = FileInfo()
 		for dir in self.directories:
 			dir_files = self.__getFilesFromDirectory(dir)
-			self.files += self.__scrubFiles(dir_files, self.exclude_regexps)
+			self.__scrubFilesIntoFileInfo(dir_files, self.exclude_regexps)
 
-		return self.files
+		return self.FileInfo.getFilesArray()

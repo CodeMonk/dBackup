@@ -58,6 +58,8 @@ class TestFileList(unittest.TestCase):
 		self.assertIn(os.path.join('.', 'FileList.py'), noPycFiles)
 		self.assertIn(os.path.join('.','test_FileList.py'),noPycFiles)
 
+		print allFL.FileInfo
+
 
 
 
